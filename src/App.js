@@ -12,7 +12,6 @@ function App() {
   const [newsResults, setNewsResults] = useState();
   const [loadMore, setLoadMore] = useState(15);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const newsAPI = async () => {
     try {
       const news = await axios.get(
@@ -25,9 +24,10 @@ function App() {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     newsAPI();
-  }, [newsResults, category, loadMore, newsAPI]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newsResults, category, loadMore]);
 
   return (
     <div className="App">
