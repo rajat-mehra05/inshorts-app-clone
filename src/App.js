@@ -4,15 +4,12 @@ import NavigBar from "./components/NavigBar";
 import axios from "axios";
 import NewsContainer from "./components/NewsContainer";
 import Footer from "./components/Footer/Footer";
-import dotenv from "dotenv";
 
 function App() {
   const [category, setCategory] = useState("general");
   const [newsArray, setNewsArray] = useState([]);
   const [newsResults, setNewsResults] = useState();
   const [loadMore, setLoadMore] = useState(15);
-
-  dotenv.config();
 
   const newsAPI = async () => {
     try {
