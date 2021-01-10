@@ -4,12 +4,14 @@ import NavigBar from "./components/NavigBar";
 import axios from "axios";
 import NewsContainer from "./components/NewsContainer";
 import Footer from "./components/Footer/Footer";
+import { Spinner } from "react-bootstrap";
 
 function App() {
   const [category, setCategory] = useState("general");
   const [newsArray, setNewsArray] = useState([]);
   const [newsResults, setNewsResults] = useState();
   const [loadMore, setLoadMore] = useState(15);
+  const [loading, setLoading] = useState(false);
 
   const newsAPI = async () => {
     try {
@@ -18,8 +20,9 @@ function App() {
       );
       setNewsArray(news.data.articles);
       setNewsResults(news.data.totalResults);
+      setLoading(true);
     } catch (err) {
-      alert(err);
+      alert("Requests exhausted. Try again after 24 hours");
     }
   };
 
@@ -31,7 +34,14 @@ function App() {
   return (
     <div className="App">
       <NavigBar setCategory={setCategory} />
-
+      {loading ? (
+        NavigBar
+      ) : (
+        <Spinner animation="grow">
+          {" "}
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      )}
       <NewsContainer
         loadMore={loadMore}
         setLoadMore={setLoadMore}
