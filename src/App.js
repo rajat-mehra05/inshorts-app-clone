@@ -22,7 +22,7 @@ function App() {
       setNewsResults(news.data.totalResults);
       setLoading(true);
     } catch (err) {
-      alert("Requests exhausted. Try again after 24 hours");
+      alert("This app runs on Firefox and local-host machine.");
     }
   };
 
