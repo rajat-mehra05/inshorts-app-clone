@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import NavigBar from "./components/NavigBar";
+import axios from "axios";
+import NewsContainer from "./components/NewsContainer";
+import api_key from "./config";
+import Footer from "./components/Footer/Footer";
 
 function App() {
+  const [category, setCategory] = useState("general");
+  const [newsArray, setNewsArray] = useState([]);
+  const [newsResults, setNewsResults] = useState();
+  const [loadMore, setLoadMore] = useState(15);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const newsAPI = async () => {
+    try {
+      const news = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=in&apiKey=${api_key}&category=${category}&pageSize=${loadMore}`
+      );
+      setNewsArray(news.data.articles);
+      setNewsResults(news.data.totalResults);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  useEffect(() => {
+    newsAPI();
+  }, [newsResults, category, loadMore, newsAPI]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavigBar setCategory={setCategory} />
+
+      <NewsContainer
+        loadMore={loadMore}
+        setLoadMore={setLoadMore}
+        newsArray={newsArray}
+        newsResults={newsResults}
+      />
+      <Footer />
     </div>
   );
 }

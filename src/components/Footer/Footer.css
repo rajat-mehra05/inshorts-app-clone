@@ -1,0 +1,35 @@
+.footer {
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  letter-spacing: 1.45px;
+}
+
+.about a {
+  color: crimson;
+  font-size: 1.65rem;
+  letter-spacing: normal;
+}
+
+.about a:hover {
+  color: darkmagenta;
+}
+
+.icons-div p {
+  color: #eee;
+  text-align: center;
+  font-size: 1.58rem;
+  margin-right: 6rem;
+}
+
+.icons-div button {
+  font-size: 1.5rem;
+  margin-left: 2rem;
+}
+
+.icons-div button:hover {
+  transform: scale(1.5);
+  color: blue;
+}
