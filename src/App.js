@@ -3,8 +3,8 @@ import "./App.css";
 import NavigBar from "./components/NavigBar";
 import axios from "axios";
 import NewsContainer from "./components/NewsContainer";
-import api_key from "./config";
 import Footer from "./components/Footer/Footer";
+import dotenv from "dotenv";
 
 function App() {
   const [category, setCategory] = useState("general");
@@ -12,11 +12,12 @@ function App() {
   const [newsResults, setNewsResults] = useState();
   const [loadMore, setLoadMore] = useState(15);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  dotenv.config();
+
   const newsAPI = async () => {
     try {
       const news = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=in&apiKey=${api_key}&category=${category}&pageSize=${loadMore}`
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_API_KEY}&category=${category}&pageSize=${loadMore}`
       );
       setNewsArray(news.data.articles);
       setNewsResults(news.data.totalResults);
@@ -27,7 +28,8 @@ function App() {
 
   useEffect(() => {
     newsAPI();
-  }, [newsResults, category, loadMore, newsAPI]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newsResults, category, loadMore]);
 
   return (
     <div className="App">
