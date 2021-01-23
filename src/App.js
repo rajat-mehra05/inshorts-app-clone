@@ -16,7 +16,7 @@ function App() {
   const newsAPI = async () => {
     try {
       const news = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_API_KEY}&category=${category}&pageSize=${loadMore}`
+        `https://saurav.tech/NewsAPI/top-headlines/category/${category}/in.json`
       );
       setNewsArray(news.data.articles);
       setNewsResults(news.data.totalResults);
