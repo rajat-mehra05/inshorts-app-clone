@@ -40,8 +40,6 @@ const NewsContainer = ({ newsArray, newsResults, loadMore, setLoadMore }) => {
               onClick={() => setLoadMore(loadMore + 20)}
             >
               Load More
-            </button>
-                Load More
               </button>
             </>
           )}
