@@ -35,15 +35,9 @@ const NewsContainer = ({ newsArray, newsResults, loadMore, setLoadMore }) => {
           {loadMore <= newsResults && (
             <>
               <hr />
-<<<<<<< HEAD
-              <button
-                className="loadMore"
-                onClick={() => setLoadMore(loadMore + 15)}
-              >
-=======
-              <button className="loadMore" onClick={setLoadMore(loadmore + 15)}>
+              <button className="loadMore" onClick={()=> setLoadMore(loadmore + 15)}>
                 {" "}
->>>>>>> 3da647995b364dc979503d9aeb76722818c90415
+
                 Load More
               </button>
             </>
