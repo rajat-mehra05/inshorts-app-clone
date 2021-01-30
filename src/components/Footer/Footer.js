@@ -14,8 +14,6 @@ const Footer = () => {
           </a>
         </p>
         <br />
-        Inspired by <a href="https://twitter.com/Piyush_eon">Roadside Coder </a>
-        <hr style={{ width: 90 }} />
       </div>
 
       <div class="icons-div">
